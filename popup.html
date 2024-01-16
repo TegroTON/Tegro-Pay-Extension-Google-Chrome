@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Tegro</title>
+</head>
+
+<style>
+  body {
+    box-sizing: border-box;
+    padding: 20px;
+    width: 300px;
+  }
+
+  .item_input_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .wrapper_items_input {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .wrapper_items_input input {
+    border: 1px solid #8a8a8a;
+    padding: 7px;
+    font-size: 14px;
+    font-family: sans-serif;
+    box-sizing: border-box;
+    border-radius: 4px;
+  }
+
+  .btn {
+    font-weight: 500;
+    padding: 0.625rem 1.25rem;
+    border-radius: 4px;
+    width: 100%;
+    background-color: #007aff;
+    border: 0;
+    color: #fff;
+    font-size: 14px;
+    font-family: sans-serif;
+  }
+
+  #step_2,
+  #step_1 {
+    display: none;
+  }
+
+  #step_2.active,
+  #step_1.active {
+    display: flex;
+  }
+
+  .error_string,
+  .error_string_2 {
+    display: none;
+    padding: 5px;
+    text-align: left;
+    background-color: #ff0000;
+    text-align: left;
+    color: #fff;
+  }
+
+  .error_string.active,
+  .error_string_2.active {
+    display: block;
+  }
+
+  .wrapper_link_get_api_key {
+    display: flex;
+    justify-content: center;
+  }
+</style>
+
+<body>
+
+  <div class="wrapper_items_input active" id="step_1">
+    <div class="item_input_wrapper">
+      <label for="shop_id">Shop ID:</label>
+      <input type="text" name="shop_id" id="shop_id">
+    </div>
+    <div class="item_input_wrapper">
+      <label for="secrt_key">Secrt Key:</label>
+      <input type="text" name="secrt_key" id="secrt_key">
+    </div>
+    <div class="item_input_wrapper">
+      <label for="api_key">API Key:</label>
+      <input type="text" name="api_key" id="api_key">
+    </div>
+    <div class="error_string">Fill in all the fields</div>
+    <button type="button" class="btn" id="btn_step_1">Next step</button>
+    <div class="wrapper_link_get_api_key">
+      <a href="https://tegro.money/my/shop-settings/">Get API key</a>
+    </div>
+  </div>
+
+  <div class="wrapper_items_input" id="step_2">
+    <div class="item_input_wrapper">
+      <label for="currency">Currency:</label>
+      <select name="currency" id="currency">
+        <option value="RUB">RUB</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="EUR">EUR</option>
+      </select>
+    </div>
+    <div class="item_input_wrapper">
+      <label for="amount">Amount:</label>
+      <input type="text" name="amount" id="amount">
+    </div>
+    <div class="item_input_wrapper">
+      <label for="order_id">Order id:</label>
+      <input type="text" name="order_id" id="order_id">
+    </div>
+    <div class="item_input_wrapper" id="wrapper_order_link" style="display: none;">
+      <label for="link"></label>
+      <a href="#" id="order_link">Link</a>
+    </div>
+    <div class="error_string_2">Fill in all the fields</div>
+    <button type="button" class="btn" id="createOrder">Create</button>
+    <button type="button" class="btn" id="getAllOrders">Get all orders</button>
+    <div class="orders_list" id="orders_list"></div>
+  </div>
+
+  <script src="crypto-js.js"></script>
+  <script src="spark-md5.min.js"></script>
+  <script src="popup.js"></script>
+</body>
+
+</html>
