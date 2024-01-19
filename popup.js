@@ -48,6 +48,42 @@ function createOrder() {
 
 }
 
+function getBalance() {
+    return new Promise(async (resolve) => {
+        try {
+            let data = {
+                'shop_id': shop_id.value,
+                'nonce': new Date().getTime() / 1000
+            };
+
+            debugger
+            let body = JSON.stringify(data);
+
+            const sign = CryptoJS.HmacSHA256(body, api_key.value).toString(CryptoJS.enc.Hex);
+            let response = await fetch('https://tegro.money/api/balance/', {
+                method: 'POST',
+                body,
+                headers: {
+                    'Authorization': `Bearer ${sign}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+            let res = await response.json();
+            debugger
+            resolve(res);
+
+
+        } catch (err) {
+            console.log(err);
+            debugger
+            resolve({
+                data: [],
+                desc: "Exception error",
+                type: "error"
+            });
+        }
+    });
+}
 
 
 
@@ -96,7 +132,7 @@ document.getElementById('createOrder').addEventListener('click', () => {
 
 });
 
-btn_step_1.addEventListener('click', () => {
+btn_step_1.addEventListener('click', async () => {
     if (api_key.value != "" && shop_id.value != "") {
         step_1.classList.remove('active');
         step_2.classList.add('active');
