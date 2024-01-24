@@ -1,22 +1,35 @@
 {
-    "manifest_version": 3,
-    "name": "Tegro expansion",
-    "version": "1.0",
-    "description": "Tegro expansion",
-    "permissions": [ "storage" ],
-    "action": {
-      "default_popup": "popup.html",
-      "default_icon": {
-        "16": "images/icon16.png",
-        "48": "images/icon48.png",
-        "128": "images/icon128.png"
+  "name": "Tegro expansion",
+  "short_name": "Tegro",
+  "description": "Tegro expansion",
+  "version": "1.1",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon/icon16.png",
+      "48": "icon/icon48.png",
+      "128": "icon/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon/icon16.png",
+    "48": "icon/icon48.png",
+    "128": "icon/icon128.png"
+  },
+
+    "permissions": [ 
+      "storage" 
+    ],
+
+    "content_scripts": [
+      {
+        "matches": ["https://tegro.money/api/*"],
+        "js": [
+          "popup.js"
+        ],
+        "run_at": "document_start"
       }
-    },
-    "icons": {
-      "16": "images/icon16.png",
-      "48": "images/icon48.png",
-      "128": "images/icon128.png"
-    },
-    "host_permissions": ["https://tegro.money/api/*"]
+    ]
   }
   
